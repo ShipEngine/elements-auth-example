@@ -1,7 +1,7 @@
 {
   "name": "elements-auth-example",
   "version": "0.1.0",
-  "main": "index.js",
+  "main": "./src/server.js",
   "type": "module",
   "repository": "git@github.com:ShipEngine/elements-auth-example.git",
   "private": false,
