@@ -3,40 +3,62 @@ import axios from "axios";
 import jsonwebtoken from "jsonwebtoken";
 import express from "express";
 import "dotenv/config";
+import config from "./config.js";
 
 const app = express();
 
-const generateToken = async () => {
+const keyName = config.get("privateKeyFileName");
+const platformKey = config.get("platformKey");
+const issuer = config.get("platformTokenIssuer");
+const keyid = config.get("platformTokenKeyId");
+const scope = config.get("scope");
+const partner = config.get("partnerId");
+const defaultTenant = config.get("tenant");
+const port = config.get("port");
+const tokenEndpoint = config.get("tokenEndpoint");
+
+const generateToken = async (tenantId) => {
+  const tenant = tenantId || defaultTenant;
   const payload = {
-    partner: process.env.SHIPENGINE_PARTNER_ID,
-    tenant: process.env.SHIPENGINE_SELLER_ID,
-    scope: process.env.SCOPE,
+    partner,
+    tenant,
+    scope,
   };
 
-  const secretKey = fs.readFileSync(process.env.PRIVATE_KEY_FILENAME, "utf-8");
+  const secretKey = platformKey || fs.readFileSync(keyName, "utf-8");
 
-  if (!secretKey) throw new Error("Missing secret key");
+  try {
+    if (!secretKey) throw new Error("Missing secret key");
+  } catch (error) {
+    console.error("Problem with the key provided");
+    console.error({ error });
+  }
 
   const token = await jsonwebtoken.sign(payload, secretKey, {
     algorithm: "RS256",
     expiresIn: 3600,
-    issuer: process.env.PLATFORM_TOKEN_ISSUER,
-    keyid: process.env.PLATFORM_TOKEN_KEY_ID,
+    issuer,
+    keyid,
   });
 
   return token;
 };
 
-const generateTokenPath = process.env.PATH_GENERATE_TOKEN || "/generate-token";
-app.get(generateTokenPath, async (_req, res) => {
+app.get(`${tokenEndpoint}/:tenantId`, async (req, res) => {
+  let tenant = req.params.tenantId;
+
+  const token = await generateToken(tenant);
+
+  res.status(200).json({ token });
+});
+
+app.get(tokenEndpoint, async (_, res) => {
   const token = await generateToken();
 
   res.status(200).json({ token });
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server listening on port: ${process.env.PORT}`);
-  console.log(
-    `Path for token generation is: ${process.env.PATH_GENERATE_TOKEN}`
-  );
+app.listen(port, () => {
+  console.log(`Server listening on port: ${port}`);
+  console.log(`Path for token generation is: ${tokenEndpoint}`);
 });
