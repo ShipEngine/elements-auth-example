@@ -32,6 +32,8 @@ const generateToken = async (tenantId) => {
   } catch (error) {
     console.error("Problem with the key provided");
     console.error({ error });
+
+    throw new Error("Problem with the key provided. Make sure you either pass the key as a string or provide a valid file path");
   }
 
   const token = await jsonwebtoken.sign(payload, secretKey, {
@@ -46,16 +48,23 @@ const generateToken = async (tenantId) => {
 
 app.get(`${tokenEndpoint}/:tenantId`, async (req, res) => {
   let tenant = req.params.tenantId;
-
-  const token = await generateToken(tenant);
-
-  res.status(200).json({ token });
+  try {
+    const token = await generateToken(tenant);
+  
+    res.status(200).json({ token });
+  } catch (error) {
+    res.status(500).json({ error })
+  }
 });
 
 app.get(tokenEndpoint, async (_, res) => {
-  const token = await generateToken();
+  try {
+    const token = await generateToken();
 
-  res.status(200).json({ token });
+    res.status(200).json({ token });
+  } catch (error) {
+    res.status(500).json({ error })
+  }
 });
 
 app.listen(port, () => {
