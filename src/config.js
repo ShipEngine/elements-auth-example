@@ -20,7 +20,7 @@ export default convict({
   platformTokenIssuer: {
     doc: "Issuer provided by your shipengine contact",
     format: String,
-    default: "default issuer",
+    default: "elements-auth",
     env: "PLATFORM_TOKEN_ISSUER",
   },
   platformTokenKeyId: {
