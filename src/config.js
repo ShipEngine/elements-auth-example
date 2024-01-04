@@ -56,7 +56,7 @@ export default convict({
   tokenEndpoint: {
     doc: "The endpoint users generate their token at",
     format: String,
-    default: "/generate-token",
+    default: "/",
     env: "TOKEN_ENDPOINT",
   },
 }).loadFile(path.join(__dirname, "../config/development.json"));
