@@ -25,7 +25,7 @@ npm install
 yarn
 ```
 
-2. Start the application
+2a. Start the application
 
 ```bash
 npm start
@@ -33,6 +33,16 @@ npm start
 
 ```bash
 yarn start
+```
+
+2b. Start application for development
+
+```bash
+npm dev
+```
+
+```bash
+yarn dev
 ```
 
 ## How to Configure
