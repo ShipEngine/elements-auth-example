@@ -47,7 +47,7 @@ yarn dev
 
 ## How to Configure
 
-The application uses an express server to serve your token generation requests, and uses [convict](https://github.com/mozilla/node-convict/tree/master) to manage configuration. The configuration is located in the `config` folder. The `default.json` file contains the default configuration. The `local.json` file is used for local development and is git ignored. The `production.json` file is used for production and is git ignored.
+The application uses an express server to serve your token generation requests, and uses [convict](https://github.com/mozilla/node-convict/tree/master) to manage configuration.
 
 There are two ways to configure the application. The first is to manually edit the `config.js` file (located inside the `src` directory). The alternative way is to provide a json file with the configuration values.
 
