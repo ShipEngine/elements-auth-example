@@ -78,10 +78,10 @@ Each configuration field has an object value with the following properties.
 
 ### Optional Configuration Options
 
-| Configuration Field | Description                                    | Default Value |
-| ------------------- | ---------------------------------------------- | ------------- |
-| **port**            | The port number on which the application runs. | _1337_        |
-| **tokenEndpoint**   | The endpoint for token generation requests.    | _'/'_         |
-| **tenantId**        | Placeholder.                                   | _Placeholder_ |
+| Configuration Field | Description                                                                                              | Default Value |
+| ------------------- | -------------------------------------------------------------------------------------------------------- | ------------- |
+| **port**            | The port number on which the application runs.                                                           | _1337_        |
+| **tokenEndpoint**   | The endpoint for token generation requests.                                                              | _'/'_         |
+| **tenantId**        | Tenant id can optionally be provided if tokens need to be generated only for one specific seller account | _Empty_       |
 
 **Tip:** Documentation for all the fields outlined is described in the [Elements Guide Documentation](https://www.shipengine.com/docs/elements/elements-guide/#elements-jwt-generation)
