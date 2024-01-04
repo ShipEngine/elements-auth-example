@@ -66,6 +66,23 @@ Each configuration field has an object value with the following properties.
 - env: The environment field name where the value will be read from **Note:** this of course overrides the default value when provided
   - the value of this field needs to be the same as the key in your environment file
 
+Example of environment file (`.env`)
+
+```env
+PRIVATE_KEY_FILENAME=value
+PLATFORM_TOKEN_ISSUER=value
+PLATFORM_TOKEN_KEY_ID=value
+SCOPE=value
+SHIPENGINE_PARTNER_ID=value
+SHIPENGINE_TENANT=value
+PORT=value
+PATH_GENERATE_TOKEN=/value
+PRIVATE_KEY="Multiple
+Line
+Value
+End"
+```
+
 ### Configure using json files
 
 **Important:** currently the json file needs to be called `development.json` and needs to be inside the `config` directory
