@@ -4,15 +4,22 @@ Example application for handling ShipEngine Elements authentication token reques
 
 ## How to use
 
-- as a library
-- as an executable
+1. Install dependencies
 
-## Using as a library
+```bash
+npm install
+```
 
-### How to config
+```bash
+yarn
+```
 
-- env file
-- commandline args
-- json file
+2. Start the application
 
-## Using as an executable
+```bash
+npm start
+```
+
+```bash
+yarn start
+```
