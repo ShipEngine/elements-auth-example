@@ -56,6 +56,8 @@ There are two ways to configure the application. The first is to manually edit t
 This file exports the result of calling convict with your configuration schema passed as an argument.
 The configuration schema is an object with the configurationn fields as keys.
 
+**Important:** currently the environment file needs to be called `.env` and must be at the root of the app directory
+
 Each configuration field has an object value with the following properties.
 
 - doc: Short description of the field **No need to edit**
@@ -65,6 +67,8 @@ Each configuration field has an object value with the following properties.
   - the value of this field needs to be the same as the key in your environment file
 
 ### Configure using json files
+
+**Important:** currently the json file needs to be called `development.json` and needs to be inside the `config` directory
 
 ### Configuration Hierarchy
 
