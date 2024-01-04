@@ -59,9 +59,10 @@ The configuration schema is an object with the configurationn fields as keys.
 Each configuration field has an object value with the following properties.
 
 - doc: Short description of the field **No need to edit**
-- format: The format **No need to edit**
+- format: The type of value this holds **No need to edit**
 - default: If you'd like to provide a default value for the field, this is the place **Note:** this is the value that will be used if none is provided through either env or json
-- env: The environment field where the value will be read from **Note:** this of course overrides the default value when provided
+- env: The environment field name where the value will be read from **Note:** this of course overrides the default value when provided
+  - the value of this field needs to be the same as the key in your environment file
 
 ### Configure using json files
 
