@@ -70,6 +70,24 @@ Each configuration field has an object value with the following properties.
 
 **Important:** currently the json file needs to be called `development.json` and needs to be inside the `config` directory
 
+The json file must contain a json object with all the configuration fields you want to set as keys and their values as the value. Keep in mind the keys need to match the schema keys in the `config.js` file.
+
+Example json configuration file
+
+```json
+{
+  "privateKeyFileName": "private.pem",
+  "platformTokenIssuer": "json issuer",
+  "platformTokenKeyId": "json platform key id",
+  "shipenginePartnerApiKey": "json shipengine partner api key",
+  "scope": "json scope",
+  "partnerId": "json partner id",
+  "tenant": "json tenant",
+  "port": 4444,
+  "tokenEndpoint": "/generate-token"
+}
+```
+
 ### Configuration Hierarchy
 
 Since the application provides multiple ways to set your configuration values there can be some confusion as to what value your app ends up with. Keep in mind the following hierarchy when configuring your application.
