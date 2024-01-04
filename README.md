@@ -53,6 +53,16 @@ There are two ways to configure the application. The first is to manually edit t
 
 ### Configure through config.js
 
+This file exports the result of calling convict with your configuration schema passed as an argument.
+The configuration schema is an object with the configurationn fields as keys.
+
+Each configuration field has an object value with the following properties.
+
+- doc: Short description of the field **No need to edit**
+- format: The format **No need to edit**
+- default: If you'd like to provide a default value for the field, this is the place **Note:** this is the value that will be used if none is provided through either env or json
+- env: The environment field where the value will be read from **Note:** this of course overrides the default value when provided
+
 ### Configure using json files
 
 ### Required Configuration Options
