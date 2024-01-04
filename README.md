@@ -65,6 +65,12 @@ Each configuration field has an object value with the following properties.
 
 ### Configure using json files
 
+### Configuration Hierarchy
+
+Since the application provides multiple ways to set your configuration values there can be some confusion as to what value your app ends up with. Keep in mind the following hierarchy when configuring your application.
+
+environment variables -> json file -> config.js defaults
+
 ### Required Configuration Options
 
 **Note:** Required fields do not provide default values
