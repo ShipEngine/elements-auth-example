@@ -45,6 +45,34 @@ npm dev
 yarn dev
 ```
 
+3. Request a token from the application
+
+3a. Using curl
+
+```bash
+curl http://localhost:{port}/{tokenEndpoint}
+
+curl http://localhost:3002/
+
+curl http://localhost:3002/generate-token/
+```
+
+```bash
+curl http://localhost:{port}/{tokenEndpoint}/{tenantId}
+
+curl http://localhost:3002/123456789
+
+curl http://localhost:3002/generate-token/123456789
+```
+
+3b. Using browser
+
+Navigate to `http://localhost:{port}/{tokenEndpoint}`
+Example with defaults `http://localhost:3002/`
+
+Navigate to `http://localhost:{port}/{tokenEndpoint}/{tenantId}`
+Example with defaults plus tenant id `http://localhost:3002/123456789`
+
 ## How to Configure
 
 The application uses an express server to serve your token generation requests, and uses [convict](https://github.com/mozilla/node-convict/tree/master) to manage configuration.
