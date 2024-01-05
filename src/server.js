@@ -4,8 +4,11 @@ import jsonwebtoken from "jsonwebtoken";
 import express from "express";
 import "dotenv/config";
 import config from "./config.js";
+import cors from "cors";
 
 const app = express();
+
+app.use(cors());
 
 const keyName = config.get("privateKeyFileName");
 const platformKey = config.get("platformKey");
@@ -33,7 +36,9 @@ const generateToken = async (tenantId) => {
     console.error("Problem with the key provided");
     console.error({ error });
 
-    throw new Error("Problem with the key provided. Make sure you either pass the key as a string or provide a valid file path");
+    throw new Error(
+      "Problem with the key provided. Make sure you either pass the key as a string or provide a valid file path"
+    );
   }
 
   const token = await jsonwebtoken.sign(payload, secretKey, {
@@ -50,10 +55,10 @@ app.get(`${tokenEndpoint}/:tenantId`, async (req, res) => {
   let tenant = req.params.tenantId;
   try {
     const token = await generateToken(tenant);
-  
+
     res.status(200).json({ token });
   } catch (error) {
-    res.status(500).json({ error })
+    res.status(500).json({ error });
   }
 });
 
@@ -63,7 +68,7 @@ app.get(tokenEndpoint, async (_, res) => {
 
     res.status(200).json({ token });
   } catch (error) {
-    res.status(500).json({ error })
+    res.status(500).json({ error });
   }
 });
 
