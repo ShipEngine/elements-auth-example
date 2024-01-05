@@ -126,7 +126,7 @@ environment variables -> json file -> config.js defaults
 
 | Configuration Field | Description                                                                                              | Default Value |
 | ------------------- | -------------------------------------------------------------------------------------------------------- | ------------- |
-| **port**            | The port number on which the application runs.                                                           | _1337_        |
+| **port**            | The port number on which the application runs.                                                           | _3002_        |
 | **tokenEndpoint**   | The endpoint for token generation requests.                                                              | _'/'_         |
 | **tenantId**        | Tenant id can optionally be provided if tokens need to be generated only for one specific seller account | _Empty_       |
 

@@ -50,7 +50,7 @@ export default convict({
   port: {
     doc: "Port the server should listen on",
     format: "port",
-    default: 1337,
+    default: 3002,
     env: "PORT",
   },
   tokenEndpoint: {
