@@ -149,6 +149,10 @@ environment variables -> json file -> config.js defaults
 | **platformTokenKeyId**  | Used as an identifier for the public RSA key that was submitted to your Account Manager. This value will be provided to you by your Account Manager after your public RSA key has been submitted.             |
 | **scope**               | Used to determine the permissions for the generated token. This value will be provided to you by your Account Manager.                                                                                        |
 | **partnerId**           | Your ShipEngine Account Identification, unique to your organization, not to be confused with a tenantId. This is provided for you by your Account Manager when you register to the ShipEngine Partner program |
+| **privateKey**          | Your generated RSA private key in string format                                                                                                                                                               |
+| **privateKeyFilename**  | File name of your generated RSA private key                                                                                                                                                                   |
+
+**Note:** You only need to provide either `privateKey` or `privateKeyFilename` but not both
 
 ### Optional Configuration Options
 
