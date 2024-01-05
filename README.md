@@ -130,4 +130,4 @@ environment variables -> json file -> config.js defaults
 | **tokenEndpoint**   | The endpoint for token generation requests.                                                              | _'/'_         |
 | **tenantId**        | Tenant id can optionally be provided if tokens need to be generated only for one specific seller account | _Empty_       |
 
-**Tip:** Documentation for all the fields outlined is described in the [Elements Guide Documentation](https://www.shipengine.com/docs/elements/elements-guide/#elements-jwt-generation)
+**Tip:** Documentation for all the fields outlined is described in the [Elements Guide Documentation](https://www.shipengine.com/docs/elements/elements-guide/#elements-jwt-generation) and [ShipEngine JWT Documentation](https://www.shipengine.com/docs/partners/jwt/)
