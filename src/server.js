@@ -6,9 +6,19 @@ import "dotenv/config";
 import config from "./config.js";
 import cors from "cors";
 
+import path from "path";
+import * as url from "url";
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
+
 const app = express();
 
 app.use(cors());
+
+const configFilePath = path.join(__dirname, "../config/development.json");
+if (fs.existsSync(configFilePath)) {
+  config.loadFile(configFilePath);
+}
 
 const privateKeyFileName = config.get("privateKeyFileName");
 const privateKey = config.get("privateKey");
