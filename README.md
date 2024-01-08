@@ -17,9 +17,13 @@ Example application for handling ShipEngine Elements authentication token reques
 
 1. Install dependencies
 
+Install with npm
+
 ```bash
 npm install
 ```
+
+Installl with yarn
 
 ```bash
 yarn
@@ -27,9 +31,13 @@ yarn
 
 2a. Start the application
 
+Start with npm
+
 ```bash
 npm start
 ```
+
+Start with yarn
 
 ```bash
 yarn start
@@ -37,9 +45,13 @@ yarn start
 
 2b. Start application for development
 
+Start with npm in dev mode (watch mode)
+
 ```bash
 npm dev
 ```
+
+Start with yarn in dev mode (watch mode)
 
 ```bash
 yarn dev
