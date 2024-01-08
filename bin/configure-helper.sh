@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 read -p "private key file name: " privateKeyFileName
 read -p "private key as a string: " privateKey
