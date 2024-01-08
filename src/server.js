@@ -28,7 +28,9 @@ const generateToken = async (tenantId) => {
     scope,
   };
 
-  const secretKey = privateKey || fs.readFileSync(privateKeyFileName, "utf-8");
+  const secretKey =
+    privateKey.replace(/\n\s*/g, "\n") ||
+    fs.readFileSync(privateKeyFileName, "utf-8");
 
   try {
     if (!secretKey) throw new Error("Missing secret key");
