@@ -1,25 +1,28 @@
 #!/bin/bash
 
 read -p "private key file name: " privateKeyFileName
-read -p "token issuer: " tokenIssuer
-read -p "token key id: " tokenKeyId
+read -p "private key as a string: " privateKey
+read -p "token issuer: " platformTokenIssuer
+read -p "token key id: " platformTokenKeyId
 read -p "scope: " scope
 read -p "Partner Id: " partnerId
 read -p "port: " port
-read -p "endpoint: " endpoint
+read -p "endpoint: " tokenEndpoint
 
 echo "private key file name: $privateKeyFileName"
-echo "token issuer: $tokenIssuer"
-echo "token key id: $tokenKeyId"
+echo "private key as a string: $privateKey"
+echo "token issuer: $platformTokenIssuer"
+echo "token key id: $platformTokenKeyId"
 echo "scope: $scope"
 echo "Partner Id: $partnerId"
 echo "port: $port"
-echo "endpoint: $endpoint"
+echo "endpoint: $tokenEndpoint"
 
-echo "privateKeyFileName=$privateKeyFileName" >.env.generated
-echo "tokenIssuer=$tokenIssuer" >>.env.generated
-echo "tokenKeyId=$tokenKeyId" >>.env.generated
-echo "scope=$scope" >>.env.generated
-echo "partnerId=$partnerId" >>.env.generated
-echo "port=$port" >>.env.generated
-echo "endpoint=$endpoint" >>.env.generated
+echo "PRIVATE_KEY_FILENAME=$privateKeyFileName" >.env.generated
+echo "PLATFORM_TOKEN_ISSUER=$platformTokenIssuer" >>.env.generated
+echo "PLATFORM_TOKEN_KEY_ID=$platformTokenKeyId" >>.env.generated
+echo "SCOPE=$scope" >>.env.generated
+echo "SHIPENGINE_PARTNER_ID=$partnerId" >>.env.generated
+echo "PORT=$port" >>.env.generated
+echo "TOKEN_ENDPOINT=$tokenEndpoint" >>.env.generated
+echo "PRIVATE_KEY=$privateKey" >>.env.generated
