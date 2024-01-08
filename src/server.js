@@ -10,13 +10,13 @@ const app = express();
 
 app.use(cors());
 
-const keyName = config.get("privateKeyFileName");
-const platformKey = config.get("platformKey");
+const privateKeyFileName = config.get("privateKeyFileName");
+const privateKey = config.get("privateKey");
 const issuer = config.get("platformTokenIssuer");
 const keyid = config.get("platformTokenKeyId");
 const scope = config.get("scope");
 const partner = config.get("partnerId");
-const defaultTenant = config.get("tenant");
+const defaultTenant = config.get("tenantId");
 const port = config.get("port");
 const tokenEndpoint = config.get("tokenEndpoint");
 
@@ -28,7 +28,7 @@ const generateToken = async (tenantId) => {
     scope,
   };
 
-  const secretKey = platformKey || fs.readFileSync(keyName, "utf-8");
+  const secretKey = privateKey || fs.readFileSync(privateKeyFileName, "utf-8");
 
   try {
     if (!secretKey) throw new Error("Missing secret key");

@@ -114,9 +114,9 @@ PLATFORM_TOKEN_ISSUER=value
 PLATFORM_TOKEN_KEY_ID=value
 SCOPE=value
 SHIPENGINE_PARTNER_ID=value
-SHIPENGINE_TENANT=value
+TENANT_ID=value
 PORT=value
-PATH_GENERATE_TOKEN=/value
+TOKEN_ENDPOINT=/value
 PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
 The
 body
@@ -139,11 +139,10 @@ Example json configuration file
   "privateKeyFileName": "private.pem",
   "platformTokenIssuer": "json issuer",
   "platformTokenKeyId": "json platform key id",
-  "shipenginePartnerApiKey": "json shipengine partner api key",
   "scope": "json scope",
   "partnerId": "json partner id",
-  "tenant": "json tenant",
-  "port": 4444,
+  "tenantId": "json tenant",
+  "port": 3002,
   "tokenEndpoint": "/generate-token"
 }
 ```

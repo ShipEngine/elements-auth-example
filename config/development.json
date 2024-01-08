@@ -2,10 +2,9 @@
   "privateKeyFileName": "private.pem",
   "platformTokenIssuer": "json issuer",
   "platformTokenKeyId": "json platform key id",
-  "shipenginePartnerApiKey": "json shipengine partner api key",
   "scope": "json scope",
   "partnerId": "json partner id",
-  "tenant": "json tenant",
+  "tenantId": "json tenant",
   "port": 4444,
   "tokenEndpoint": "/generate-token"
 }
