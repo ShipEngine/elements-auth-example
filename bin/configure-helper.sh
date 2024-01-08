@@ -16,10 +16,10 @@ echo "Partner Id: $partnerId"
 echo "port: $port"
 echo "endpoint: $endpoint"
 
-echo "privateKeyFileName=$privateKeyFileName" >.env-generated
-echo "tokenIssuer=$tokenIssuer" >>.env-generated
-echo "tokenKeyId=$tokenKeyId" >>.env-generated
-echo "scope=$scope" >>.env-generated
-echo "partnerId=$partnerId" >>.env-generated
-echo "port=$port" >>.env-generated
-echo "endpoint=$endpoint" >>.env-generated
+echo "privateKeyFileName=$privateKeyFileName" >.env.generated
+echo "tokenIssuer=$tokenIssuer" >>.env.generated
+echo "tokenKeyId=$tokenKeyId" >>.env.generated
+echo "scope=$scope" >>.env.generated
+echo "partnerId=$partnerId" >>.env.generated
+echo "port=$port" >>.env.generated
+echo "endpoint=$endpoint" >>.env.generated
