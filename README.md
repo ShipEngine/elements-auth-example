@@ -17,9 +17,13 @@ Example application for handling ShipEngine Elements authentication token reques
 
 1. Install dependencies
 
+Install with npm
+
 ```bash
 npm install
 ```
+
+Installl with yarn
 
 ```bash
 yarn
@@ -27,9 +31,13 @@ yarn
 
 2a. Start the application
 
+Start with npm
+
 ```bash
 npm start
 ```
+
+Start with yarn
 
 ```bash
 yarn start
@@ -37,13 +45,45 @@ yarn start
 
 2b. Start application for development
 
+Start with npm in dev mode (watch mode)
+
 ```bash
 npm dev
 ```
 
+Start with yarn in dev mode (watch mode)
+
 ```bash
 yarn dev
 ```
+
+3. Request a token from the application
+
+3a. Using curl
+
+```bash
+curl http://localhost:{port}/{tokenEndpoint}
+
+curl http://localhost:3002/
+
+curl http://localhost:3002/generate-token/
+```
+
+```bash
+curl http://localhost:{port}/{tokenEndpoint}/{tenantId}
+
+curl http://localhost:3002/123456789
+
+curl http://localhost:3002/generate-token/123456789
+```
+
+3b. Using browser
+
+Navigate to `http://localhost:{port}/{tokenEndpoint}`
+Example with defaults `http://localhost:3002/`
+
+Navigate to `http://localhost:{port}/{tokenEndpoint}/{tenantId}`
+Example with defaults plus tenant id `http://localhost:3002/123456789`
 
 ## How to Configure
 
@@ -74,13 +114,16 @@ PLATFORM_TOKEN_ISSUER=value
 PLATFORM_TOKEN_KEY_ID=value
 SCOPE=value
 SHIPENGINE_PARTNER_ID=value
-SHIPENGINE_TENANT=value
+TENANT_ID=value
 PORT=value
-PATH_GENERATE_TOKEN=/value
-PRIVATE_KEY="Multiple
-Line
-Value
-End"
+TOKEN_ENDPOINT=/value
+PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
+The
+body
+of
+your
+key
+-----END RSA PRIVATE KEY-----"
 ```
 
 ### Configure using json files
@@ -96,11 +139,10 @@ Example json configuration file
   "privateKeyFileName": "private.pem",
   "platformTokenIssuer": "json issuer",
   "platformTokenKeyId": "json platform key id",
-  "shipenginePartnerApiKey": "json shipengine partner api key",
   "scope": "json scope",
   "partnerId": "json partner id",
-  "tenant": "json tenant",
-  "port": 4444,
+  "tenantId": "json tenant",
+  "port": 3002,
   "tokenEndpoint": "/generate-token"
 }
 ```
@@ -121,13 +163,17 @@ environment variables -> json file -> config.js defaults
 | **platformTokenKeyId**  | Used as an identifier for the public RSA key that was submitted to your Account Manager. This value will be provided to you by your Account Manager after your public RSA key has been submitted.             |
 | **scope**               | Used to determine the permissions for the generated token. This value will be provided to you by your Account Manager.                                                                                        |
 | **partnerId**           | Your ShipEngine Account Identification, unique to your organization, not to be confused with a tenantId. This is provided for you by your Account Manager when you register to the ShipEngine Partner program |
+| **privateKey**          | Your generated RSA private key in string format                                                                                                                                                               |
+| **privateKeyFilename**  | File name of your generated RSA private key                                                                                                                                                                   |
+
+**Note:** You only need to provide either `privateKey` or `privateKeyFilename` but not both
 
 ### Optional Configuration Options
 
 | Configuration Field | Description                                                                                              | Default Value |
 | ------------------- | -------------------------------------------------------------------------------------------------------- | ------------- |
-| **port**            | The port number on which the application runs.                                                           | _1337_        |
+| **port**            | The port number on which the application runs.                                                           | _3002_        |
 | **tokenEndpoint**   | The endpoint for token generation requests.                                                              | _'/'_         |
 | **tenantId**        | Tenant id can optionally be provided if tokens need to be generated only for one specific seller account | _Empty_       |
 
-**Tip:** Documentation for all the fields outlined is described in the [Elements Guide Documentation](https://www.shipengine.com/docs/elements/elements-guide/#elements-jwt-generation)
+**Tip:** Documentation for all the fields outlined is described in the [Elements Guide Documentation](https://www.shipengine.com/docs/elements/elements-guide/#elements-jwt-generation) and [ShipEngine JWT Documentation](https://www.shipengine.com/docs/partners/jwt/)

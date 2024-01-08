@@ -4,16 +4,29 @@ import jsonwebtoken from "jsonwebtoken";
 import express from "express";
 import "dotenv/config";
 import config from "./config.js";
+import cors from "cors";
+
+import path from "path";
+import * as url from "url";
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 const app = express();
 
-const keyName = config.get("privateKeyFileName");
-const platformKey = config.get("platformKey");
+app.use(cors());
+
+const configFilePath = path.join(__dirname, "../config/development.json");
+if (fs.existsSync(configFilePath)) {
+  config.loadFile(configFilePath);
+}
+
+const privateKeyFileName = config.get("privateKeyFileName");
+const privateKey = config.get("privateKey");
 const issuer = config.get("platformTokenIssuer");
 const keyid = config.get("platformTokenKeyId");
 const scope = config.get("scope");
 const partner = config.get("partnerId");
-const defaultTenant = config.get("tenant");
+const defaultTenant = config.get("tenantId");
 const port = config.get("port");
 const tokenEndpoint = config.get("tokenEndpoint");
 
@@ -25,7 +38,9 @@ const generateToken = async (tenantId) => {
     scope,
   };
 
-  const secretKey = platformKey || fs.readFileSync(keyName, "utf-8");
+  const secretKey =
+    (privateKey && privateKey.replace(/\n\s*/g, "\n")) ||
+    fs.readFileSync(privateKeyFileName, "utf-8");
 
   try {
     if (!secretKey) throw new Error("Missing secret key");
@@ -33,7 +48,9 @@ const generateToken = async (tenantId) => {
     console.error("Problem with the key provided");
     console.error({ error });
 
-    throw new Error("Problem with the key provided. Make sure you either pass the key as a string or provide a valid file path");
+    throw new Error(
+      "Problem with the key provided. Make sure you either pass the key as a string or provide a valid file path"
+    );
   }
 
   const token = await jsonwebtoken.sign(payload, secretKey, {
@@ -50,10 +67,10 @@ app.get(`${tokenEndpoint}/:tenantId`, async (req, res) => {
   let tenant = req.params.tenantId;
   try {
     const token = await generateToken(tenant);
-  
+
     res.status(200).json({ token });
   } catch (error) {
-    res.status(500).json({ error })
+    res.status(500).json({ error });
   }
 });
 
@@ -63,7 +80,7 @@ app.get(tokenEndpoint, async (_, res) => {
 
     res.status(200).json({ token });
   } catch (error) {
-    res.status(500).json({ error })
+    res.status(500).json({ error });
   }
 });
 

@@ -4,14 +4,15 @@
   "main": "./src/server.js",
   "type": "module",
   "repository": "git@github.com:ShipEngine/elements-auth-example.git",
-  "private": false,
   "scripts": {
     "start": "node src/server.js",
-    "dev": "node --watch src/server.js"
+    "dev": "node --watch src/server.js",
+    "autoConfig": "sh ./bin/configure-helper.sh"
   },
   "dependencies": {
     "axios": "^1.5.1",
     "convict": "^6.2.4",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2"
