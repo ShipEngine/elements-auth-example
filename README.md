@@ -117,10 +117,13 @@ SHIPENGINE_PARTNER_ID=value
 SHIPENGINE_TENANT=value
 PORT=value
 PATH_GENERATE_TOKEN=/value
-PRIVATE_KEY="Multiple
-Line
-Value
-End"
+PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
+The
+body
+of
+your
+key
+-----END RSA PRIVATE KEY-----"
 ```
 
 ### Configure using json files
