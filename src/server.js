@@ -29,7 +29,7 @@ const generateToken = async (tenantId) => {
   };
 
   const secretKey =
-    privateKey.replace(/\n\s*/g, "\n") ||
+    (privateKey && privateKey.replace(/\n\s*/g, "\n")) ||
     fs.readFileSync(privateKeyFileName, "utf-8");
 
   try {
