@@ -51,6 +51,9 @@ The application uses an express server to serve your token generation requests, 
 
 You'll need to provide a .env file at the root of the project directory.
 
+A template `.env` file is provided in the root of the repository as `.env.template`. You can copy this file and rename it to `.env` and fill in the required values.
+
+Here is an example of the final product in case you need it, the only value that may need attention is the `PRIVATE_KEY` as it is a multi-line string.
 Example of environment file (`.env`)
 
 ```env
