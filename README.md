@@ -47,24 +47,9 @@ yarn dev
 
 ## How to Configure
 
-The application uses an express server to serve your token generation requests, and uses [convict](https://github.com/mozilla/node-convict/tree/master) to manage configuration.
+The application uses an express server to serve your token generation requests, and uses the `dotenv` package to read your configuration values from a `.env` file.
 
-There are two ways to configure the application. The first is to manually edit the `config.js` file (located inside the `src` directory). The alternative way is to provide a json file with the configuration values.
-
-### Configure through config.js
-
-This file exports the result of calling convict with your configuration schema passed as an argument.
-The configuration schema is an object with the configurationn fields as keys.
-
-**Important:** currently the environment file needs to be called `.env` and must be at the root of the app directory
-
-Each configuration field has an object value with the following properties.
-
-- doc: Short description of the field **No need to edit**
-- format: The type of value this holds **No need to edit**
-- default: If you'd like to provide a default value for the field, this is the place **Note:** this is the value that will be used if none is provided through either env or json
-- env: The environment field name where the value will be read from **Note:** this of course overrides the default value when provided
-  - the value of this field needs to be the same as the key in your environment file
+You'll need to provide a .env file at the root of the project directory.
 
 Example of environment file (`.env`)
 
@@ -82,34 +67,6 @@ Line
 Value
 End"
 ```
-
-### Configure using json files
-
-**Important:** currently the json file needs to be called `development.json` and needs to be inside the `config` directory
-
-The json file must contain a json object with all the configuration fields you want to set as keys and their values as the value. Keep in mind the keys need to match the schema keys in the `config.js` file.
-
-Example json configuration file
-
-```json
-{
-  "privateKeyFileName": "private.pem",
-  "platformTokenIssuer": "json issuer",
-  "platformTokenKeyId": "json platform key id",
-  "shipenginePartnerApiKey": "json shipengine partner api key",
-  "scope": "json scope",
-  "partnerId": "json partner id",
-  "tenant": "json tenant",
-  "port": 4444,
-  "tokenEndpoint": "/generate-token"
-}
-```
-
-### Configuration Hierarchy
-
-Since the application provides multiple ways to set your configuration values there can be some confusion as to what value your app ends up with. Keep in mind the following hierarchy when configuring your application.
-
-environment variables -> json file -> config.js defaults
 
 ### Required Configuration Options
 
