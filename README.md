@@ -86,10 +86,10 @@ The `.env.template` provides comments to guide you along the process, but in cas
 
 ### Optional Configuration Options
 
-| Configuration Field      | Description                                                                                              | Default Value |
-|--------------------------| -------------------------------------------------------------------------------------------------------- | ------------- |
-| **PORT**                 | The port number on which the application runs.                                                           | _1337_        |
-| **TOKEN_ENDPOINT**       | The endpoint for token generation requests.                                                              | _'/'_         |
-| **SHIPENGINE_TENANT_ID** | Tenant id can optionally be provided if tokens need to be generated only for one specific seller account | _Empty_       |
+| Configuration Field      | Description                                                                                              | Default Value       |
+|--------------------------| -------------------------------------------------------------------------------------------------------- |---------------------|
+| **PORT**                 | The port number on which the application runs.                                                           | _3002_              |
+| **TOKEN_ENDPOINT**       | The endpoint for token generation requests.                                                              | _'/generate-token'_ |
+| **SHIPENGINE_TENANT_ID** | Tenant id can optionally be provided if tokens need to be generated only for one specific seller account | _Empty_             |
 
 **Tip:** Documentation for all the fields outlined is described in the [Elements Guide Documentation](https://www.shipengine.com/docs/elements/elements-guide/#elements-jwt-generation)
