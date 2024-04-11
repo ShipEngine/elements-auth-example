@@ -73,21 +73,23 @@ End"
 
 ### Required Configuration Options
 
+The `.env.template` provides comments to guide you along the process, but in case you want a more detailed reference, refer to the chart below
+
 **Note:** Required fields do not provide default values
 
-| Configuration Field     | Description                                                                                                                                                                                                   |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **platformTokenIssuer** | Used to validate the source of the generated token. This value will be provided to you by your Account Manager after your public RSA key has been submitted.                                                  |
-| **platformTokenKeyId**  | Used as an identifier for the public RSA key that was submitted to your Account Manager. This value will be provided to you by your Account Manager after your public RSA key has been submitted.             |
-| **scope**               | Used to determine the permissions for the generated token. This value will be provided to you by your Account Manager.                                                                                        |
-| **partnerId**           | Your ShipEngine Account Identification, unique to your organization, not to be confused with a tenantId. This is provided for you by your Account Manager when you register to the ShipEngine Partner program |
+| Configuration Field       | Description                                                                                                                                                                                                   |
+|---------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **PLATFORM_TOKEN_ISSUER** | Used to validate the source of the generated token. This value will be provided to you by your Account Manager after your public RSA key has been submitted.                                                  |
+| **PLATFORM_TOKEN_KEY_ID** | Used as an identifier for the public RSA key that was submitted to your Account Manager. This value will be provided to you by your Account Manager after your public RSA key has been submitted.             |
+| **SCOPE**                 | Used to determine the permissions for the generated token. This value will be provided to you by your Account Manager.                                                                                        |
+| **SHIPENGINE_PARTNER_ID** | Your ShipEngine Account Identification, unique to your organization, not to be confused with a tenantId. This is provided for you by your Account Manager when you register to the ShipEngine Partner program |
 
 ### Optional Configuration Options
 
-| Configuration Field | Description                                                                                              | Default Value |
-| ------------------- | -------------------------------------------------------------------------------------------------------- | ------------- |
-| **port**            | The port number on which the application runs.                                                           | _1337_        |
-| **tokenEndpoint**   | The endpoint for token generation requests.                                                              | _'/'_         |
-| **tenantId**        | Tenant id can optionally be provided if tokens need to be generated only for one specific seller account | _Empty_       |
+| Configuration Field      | Description                                                                                              | Default Value |
+|--------------------------| -------------------------------------------------------------------------------------------------------- | ------------- |
+| **PORT**                 | The port number on which the application runs.                                                           | _1337_        |
+| **TOKEN_ENDPOINT**       | The endpoint for token generation requests.                                                              | _'/'_         |
+| **SHIPENGINE_TENANT_ID** | Tenant id can optionally be provided if tokens need to be generated only for one specific seller account | _Empty_       |
 
 **Tip:** Documentation for all the fields outlined is described in the [Elements Guide Documentation](https://www.shipengine.com/docs/elements/elements-guide/#elements-jwt-generation)
