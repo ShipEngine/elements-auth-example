@@ -13,7 +13,7 @@ const issuer = process.env.PLATFORM_TOKEN_ISSUER;
 const keyid = process.env.PLATFORM_TOKEN_KEY_ID;
 const scope = process.env.SCOPE;
 const partner = process.env.SHIPENGINE_PARTNER_ID;
-const defaultTenant = process.env.TENANT_ID;
+const defaultTenant = process.env.SHIPENGINE_TENANT_ID;
 const port = process.env.PORT;
 const tokenEndpoint = process.env.TOKEN_ENDPOINT;
 
