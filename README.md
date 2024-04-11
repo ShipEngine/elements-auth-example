@@ -20,27 +20,27 @@ Example application for handling ShipEngine Elements authentication token reques
 ```bash
 npm install
 ```
-
+or
 ```bash
 yarn
 ```
 
-2a. Start the application
-
+2. Start the application
+- a. Start application for production
 ```bash
 npm start
 ```
-
+or
 ```bash
 yarn start
 ```
 
-2b. Start application for development
+- b. Start application for development
 
 ```bash
 npm dev
 ```
-
+or
 ```bash
 yarn dev
 ```
