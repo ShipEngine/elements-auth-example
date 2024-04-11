@@ -1,10 +1,11 @@
 import fs from "fs";
-import axios from "axios";
 import jsonwebtoken from "jsonwebtoken";
 import express from "express";
+import cors from "cors";
 import "dotenv/config";
 
 const app = express();
+app.use(cors());
 
 const keyName = process.env.PRIVATE_KEY_FILENAME;
 const platformKey = process.env.PLATFORM_KEY;
