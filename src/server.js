@@ -1,21 +1,22 @@
 import fs from "fs";
-import axios from "axios";
 import jsonwebtoken from "jsonwebtoken";
 import express from "express";
+import cors from "cors";
 import "dotenv/config";
-import config from "./config.js";
 
 const app = express();
+app.use(cors());
 
-const keyName = config.get("privateKeyFileName");
-const platformKey = config.get("platformKey");
-const issuer = config.get("platformTokenIssuer");
-const keyid = config.get("platformTokenKeyId");
-const scope = config.get("scope");
-const partner = config.get("partnerId");
-const defaultTenant = config.get("tenant");
-const port = config.get("port");
-const tokenEndpoint = config.get("tokenEndpoint");
+const keyName = process.env.PRIVATE_KEY_FILENAME;
+const platformKey = process.env.PLATFORM_KEY;
+const issuer = process.env.PLATFORM_TOKEN_ISSUER;
+const keyid = process.env.PLATFORM_TOKEN_KEY_ID;
+const scope = process.env.SCOPE;
+const partner = process.env.SHIPENGINE_PARTNER_ID;
+const defaultTenant = process.env.SHIPENGINE_TENANT_ID;
+const port = process.env.PORT;
+const tokenEndpoint = process.env.TOKEN_ENDPOINT;
+
 
 const generateToken = async (tenantId) => {
   const tenant = tenantId || defaultTenant;

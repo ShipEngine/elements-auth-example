@@ -20,52 +20,40 @@ Example application for handling ShipEngine Elements authentication token reques
 ```bash
 npm install
 ```
-
+or
 ```bash
 yarn
 ```
 
-2a. Start the application
-
+2. Start the application
+- a. Start application for production
 ```bash
 npm start
 ```
-
+or
 ```bash
 yarn start
 ```
 
-2b. Start application for development
+- b. Start application for development
 
 ```bash
 npm dev
 ```
-
+or
 ```bash
 yarn dev
 ```
 
 ## How to Configure
 
-The application uses an express server to serve your token generation requests, and uses [convict](https://github.com/mozilla/node-convict/tree/master) to manage configuration.
+The application uses an express server to serve your token generation requests, and uses the `dotenv` package to read your configuration values from a `.env` file.
 
-There are two ways to configure the application. The first is to manually edit the `config.js` file (located inside the `src` directory). The alternative way is to provide a json file with the configuration values.
+You'll need to provide a .env file at the root of the project directory.
 
-### Configure through config.js
+A template `.env` file is provided in the root of the repository as `.env.template`. You can copy this file and rename it to `.env` and fill in the required values.
 
-This file exports the result of calling convict with your configuration schema passed as an argument.
-The configuration schema is an object with the configurationn fields as keys.
-
-**Important:** currently the environment file needs to be called `.env` and must be at the root of the app directory
-
-Each configuration field has an object value with the following properties.
-
-- doc: Short description of the field **No need to edit**
-- format: The type of value this holds **No need to edit**
-- default: If you'd like to provide a default value for the field, this is the place **Note:** this is the value that will be used if none is provided through either env or json
-- env: The environment field name where the value will be read from **Note:** this of course overrides the default value when provided
-  - the value of this field needs to be the same as the key in your environment file
-
+Here is an example of the final product in case you need it, the only value that may need attention is the `PRIVATE_KEY` as it is a multi-line string.
 Example of environment file (`.env`)
 
 ```env
@@ -83,51 +71,25 @@ Value
 End"
 ```
 
-### Configure using json files
-
-**Important:** currently the json file needs to be called `development.json` and needs to be inside the `config` directory
-
-The json file must contain a json object with all the configuration fields you want to set as keys and their values as the value. Keep in mind the keys need to match the schema keys in the `config.js` file.
-
-Example json configuration file
-
-```json
-{
-  "privateKeyFileName": "private.pem",
-  "platformTokenIssuer": "json issuer",
-  "platformTokenKeyId": "json platform key id",
-  "shipenginePartnerApiKey": "json shipengine partner api key",
-  "scope": "json scope",
-  "partnerId": "json partner id",
-  "tenant": "json tenant",
-  "port": 4444,
-  "tokenEndpoint": "/generate-token"
-}
-```
-
-### Configuration Hierarchy
-
-Since the application provides multiple ways to set your configuration values there can be some confusion as to what value your app ends up with. Keep in mind the following hierarchy when configuring your application.
-
-environment variables -> json file -> config.js defaults
-
 ### Required Configuration Options
+
+The `.env.template` provides comments to guide you along the process, but in case you want a more detailed reference, refer to the chart below
 
 **Note:** Required fields do not provide default values
 
-| Configuration Field     | Description                                                                                                                                                                                                   |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **platformTokenIssuer** | Used to validate the source of the generated token. This value will be provided to you by your Account Manager after your public RSA key has been submitted.                                                  |
-| **platformTokenKeyId**  | Used as an identifier for the public RSA key that was submitted to your Account Manager. This value will be provided to you by your Account Manager after your public RSA key has been submitted.             |
-| **scope**               | Used to determine the permissions for the generated token. This value will be provided to you by your Account Manager.                                                                                        |
-| **partnerId**           | Your ShipEngine Account Identification, unique to your organization, not to be confused with a tenantId. This is provided for you by your Account Manager when you register to the ShipEngine Partner program |
+| Configuration Field       | Description                                                                                                                                                                                                   |
+|---------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **PLATFORM_TOKEN_ISSUER** | Used to validate the source of the generated token. This value will be provided to you by your Account Manager after your public RSA key has been submitted.                                                  |
+| **PLATFORM_TOKEN_KEY_ID** | Used as an identifier for the public RSA key that was submitted to your Account Manager. This value will be provided to you by your Account Manager after your public RSA key has been submitted.             |
+| **SCOPE**                 | Used to determine the permissions for the generated token. This value will be provided to you by your Account Manager.                                                                                        |
+| **SHIPENGINE_PARTNER_ID** | Your ShipEngine Account Identification, unique to your organization, not to be confused with a tenantId. This is provided for you by your Account Manager when you register to the ShipEngine Partner program |
 
 ### Optional Configuration Options
 
-| Configuration Field | Description                                                                                              | Default Value |
-| ------------------- | -------------------------------------------------------------------------------------------------------- | ------------- |
-| **port**            | The port number on which the application runs.                                                           | _1337_        |
-| **tokenEndpoint**   | The endpoint for token generation requests.                                                              | _'/'_         |
-| **tenantId**        | Tenant id can optionally be provided if tokens need to be generated only for one specific seller account | _Empty_       |
+| Configuration Field      | Description                                                                                              | Default Value       |
+|--------------------------| -------------------------------------------------------------------------------------------------------- |---------------------|
+| **PORT**                 | The port number on which the application runs.                                                           | _3002_              |
+| **TOKEN_ENDPOINT**       | The endpoint for token generation requests.                                                              | _'/generate-token'_ |
+| **SHIPENGINE_TENANT_ID** | Tenant id can optionally be provided if tokens need to be generated only for one specific seller account | _Empty_             |
 
 **Tip:** Documentation for all the fields outlined is described in the [Elements Guide Documentation](https://www.shipengine.com/docs/elements/elements-guide/#elements-jwt-generation)
