@@ -2,7 +2,7 @@ import fs from "fs";
 import jsonwebtoken from "jsonwebtoken";
 
 const keyName = process.env.PRIVATE_KEY_FILENAME;
-const platformKey = process.env.PLATFORM_KEY;
+const platformKey = process.env.PRIVATE_KEY;
 const issuer = process.env.PLATFORM_TOKEN_ISSUER;
 const keyid = process.env.PLATFORM_TOKEN_KEY_ID;
 const scope = process.env.SCOPE;
