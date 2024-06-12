@@ -57,4 +57,5 @@ app.post(sellerEndpoint, bodyParser.json(), async (req, res) => {
 app.listen(port, () => {
   console.log(`Server listening on port: ${port}`);
   console.log(`Path for token generation is: ${tokenEndpoint}`);
+  console.log(`Path for seller creation is: ${sellerEndpoint}`);
 });
