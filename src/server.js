@@ -1,60 +1,26 @@
-import fs from "fs";
-import jsonwebtoken from "jsonwebtoken";
 import express from "express";
 import cors from "cors";
+import bodyParser from "body-parser";
 import "dotenv/config";
+
+import { generateToken } from "./generate-token.js";
+import { createSeller } from "./create-seller.js";
 
 const app = express();
 app.use(cors());
 
-const keyName = process.env.PRIVATE_KEY_FILENAME;
-const platformKey = process.env.PLATFORM_KEY;
-const issuer = process.env.PLATFORM_TOKEN_ISSUER;
-const keyid = process.env.PLATFORM_TOKEN_KEY_ID;
-const scope = process.env.SCOPE;
-const partner = process.env.SHIPENGINE_PARTNER_ID;
-const defaultTenant = process.env.SHIPENGINE_TENANT_ID;
 const port = process.env.PORT;
 const tokenEndpoint = process.env.TOKEN_ENDPOINT;
-
-
-const generateToken = async (tenantId) => {
-  const tenant = tenantId || defaultTenant;
-  const payload = {
-    partner,
-    tenant,
-    scope,
-  };
-
-  const secretKey = platformKey || fs.readFileSync(keyName, "utf-8");
-
-  try {
-    if (!secretKey) throw new Error("Missing secret key");
-  } catch (error) {
-    console.error("Problem with the key provided");
-    console.error({ error });
-
-    throw new Error("Problem with the key provided. Make sure you either pass the key as a string or provide a valid file path");
-  }
-
-  const token = await jsonwebtoken.sign(payload, secretKey, {
-    algorithm: "RS256",
-    expiresIn: 3600,
-    issuer,
-    keyid,
-  });
-
-  return token;
-};
+const sellerEndpoint = process.env.SELLER_ENDPOINT;
 
 app.get(`${tokenEndpoint}/:tenantId`, async (req, res) => {
   let tenant = req.params.tenantId;
   try {
     const token = await generateToken(tenant);
-  
+
     res.status(200).json({ token });
   } catch (error) {
-    res.status(500).json({ error })
+    res.status(500).json({ error });
   }
 });
 
@@ -64,11 +30,32 @@ app.get(tokenEndpoint, async (_, res) => {
 
     res.status(200).json({ token });
   } catch (error) {
-    res.status(500).json({ error })
+    res.status(500).json({ error });
+  }
+});
+
+app.post(sellerEndpoint, bodyParser.json(), async (req, res) => {
+  try {
+    const body = req.body;
+    console.log("Creating seller with: ", body);
+
+    const seller = await createSeller(
+      body.firstName,
+      body.lastName,
+      body.email,
+      body.company,
+      body.accountId,
+      body.country
+    );
+
+    res.status(200).json(seller);
+  } catch (error) {
+    res.status(500).json({ error });
   }
 });
 
 app.listen(port, () => {
   console.log(`Server listening on port: ${port}`);
   console.log(`Path for token generation is: ${tokenEndpoint}`);
+  console.log(`Path for seller creation is: ${sellerEndpoint}`);
 });
