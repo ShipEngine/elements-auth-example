@@ -50,6 +50,7 @@ app.post(sellerEndpoint, bodyParser.json(), async (req, res) => {
 
     res.status(200).json(seller);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error });
   }
 });

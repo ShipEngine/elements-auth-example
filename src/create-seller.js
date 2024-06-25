@@ -26,8 +26,8 @@ export const createSeller = async (
     last_name,
     email,
     company_name,
-    external_account_id,
     origin_country_code,
+    ...(external_account_id ? {external_account_id} : {})
   });
 
   console.log("Created ShipEngine Seller Account: ", response.data);
